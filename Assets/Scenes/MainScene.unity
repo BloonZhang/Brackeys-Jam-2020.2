@@ -2451,6 +2451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 719090223}
+  ghostPrefab: {fileID: 1294261347030851909, guid: 6a28c67ed9814a54ea08fc61170c37da,
+    type: 3}
   runSpeed: 30
 --- !u!114 &719090223
 MonoBehaviour:
@@ -2536,9 +2538,9 @@ GameObject:
   - component: {fileID: 733941684}
   - component: {fileID: 733941683}
   - component: {fileID: 733941682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spikes
-  m_TagString: Untagged
+  m_TagString: Spikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
