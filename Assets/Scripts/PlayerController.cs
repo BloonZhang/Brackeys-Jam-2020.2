@@ -53,7 +53,10 @@ public class PlayerController : MonoBehaviour
     // Create a ghost and die
     void Death()
     {
+        // Spawn ghost
         GameObject ghost = (GameObject) Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
         ghost.GetComponent<Rigidbody2D>().velocity = this.transform.GetComponent<Rigidbody2D>().velocity;
+        // TODO: remove player
+        // TODO: reset level
     }
 }
