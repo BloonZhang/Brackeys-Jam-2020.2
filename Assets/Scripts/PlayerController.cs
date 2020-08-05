@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     // Use CharacterController2D from brackeys video, https://www.youtube.com/watch?v=dwcT-Dch0bA
     public CharacterController2D controller;
 
-    // public prefabs
+    // public prefabs and gameobjects
     public GameObject ghostPrefab;
+    public GameObject spawnPoint;
 
     // public variables
     public float runSpeed = 30f;
@@ -47,16 +48,28 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("oof");
             Death();
         }
+
+        // Lever
+        if (col.tag == "Lever")
+        {
+            col.GetComponent<LeverController>().FlipSwitch();
+        }
     }
 
     // Helper methods
     // Create a ghost and die
     void Death()
     {
+        //Debug.Log("dead");
         // Spawn ghost
         GameObject ghost = (GameObject) Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
         ghost.GetComponent<Rigidbody2D>().velocity = this.transform.GetComponent<Rigidbody2D>().velocity;
-        // TODO: remove player
-        // TODO: reset level
+        // Spawn new player and delete current one
+        controller.ResetFlip();
+        PlayerController newFox = Instantiate(this, spawnPoint.transform.position, Quaternion.identity);
+        newFox.gameObject.name = this.gameObject.name;
+        Destroy(this.gameObject);
+
+        RulesManager.Instance.RefreshLevel();
     }
 }
