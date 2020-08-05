@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LeverController : MonoBehaviour
 {
+
+    // static list that holds all levers
+    public static List<LeverController> leverList;
+
     // public variables
     public DoorScript[] myDoors;
 
@@ -12,9 +16,14 @@ public class LeverController : MonoBehaviour
 
     void Awake()
     {
-
+        if (leverList == null) {leverList = new List<LeverController>();}
+        leverList.Add(this);
     }
 
+    void OnDestroy()
+    {
+        leverList.Remove(this);
+    }
 
     // public methods
     // Reset the switch

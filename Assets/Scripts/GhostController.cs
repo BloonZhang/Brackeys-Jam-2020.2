@@ -34,6 +34,10 @@ public class GhostController : MonoBehaviour
             ghostList.Remove(this); 
             Destroy(this.gameObject);
         }
+    }
 
+    void OnDestroy()
+    {
+        ghostList.Remove(this);
     }
 }

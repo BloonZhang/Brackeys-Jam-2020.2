@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         PlayerController newFox = Instantiate(this, spawnPoint.transform.position, Quaternion.identity);
         newFox.gameObject.name = this.gameObject.name;
         Destroy(this.gameObject);
-
+        // Refresh the level, including doors and levers
         RulesManager.Instance.RefreshLevel();
     }
 }

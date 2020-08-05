@@ -5,6 +5,9 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
 
+    // static list that holds all doors
+    public static List<DoorScript> doorList;
+
     // public variables
     //public bool isOpen = false;
 
@@ -13,10 +16,21 @@ public class DoorScript : MonoBehaviour
     private Vector3 fullOpen;
     private float moveIncrement = 0.01f;
 
+    void Awake()
+    {
+        if (doorList == null) {doorList = new List<DoorScript>();}
+        doorList.Add(this);
+    }
+
     void Start()
     {
         fullClose = this.transform.position;
         fullOpen = fullClose + new Vector3(0, 2, 0);
+    }
+
+    void OnDestroy()
+    {
+        doorList.Remove(this);
     }
 
     // public methods

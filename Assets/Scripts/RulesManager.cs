@@ -19,10 +19,11 @@ public class RulesManager : MonoBehaviour
 
 
     // public methods
-    // TODO: refresh level
     public void RefreshLevel()
     {
-
+        // Refresh doors and levers
+        foreach(DoorScript door in DoorScript.doorList) {door.Reset();}
+        foreach(LeverController lever in LeverController.leverList) {lever.Reset();}
     }
 
     // TODO: finish level
