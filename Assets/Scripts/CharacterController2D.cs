@@ -147,11 +147,7 @@ public class CharacterController2D : MonoBehaviour
 	// Flip back on death
 	public void ResetFlip()
 	{
-		if (!m_FacingRight) 
-		{
-			Vector3 theScale = transform.localScale;
-			theScale.x *= -1;
-			transform.localScale = theScale;
-		}
+		transform.localScale = new Vector3(1, 1, 1);
+		m_FacingRight = true;
 	}
 }

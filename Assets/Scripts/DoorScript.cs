@@ -14,7 +14,7 @@ public class DoorScript : MonoBehaviour
     // private variables
     private Vector3 fullClose;
     private Vector3 fullOpen;
-    private float moveIncrement = 0.01f;
+    private float moveIncrement = 0.008f;
 
     void Awake()
     {

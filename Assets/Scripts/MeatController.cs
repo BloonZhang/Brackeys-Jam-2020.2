@@ -29,11 +29,6 @@ public class MeatController : MonoBehaviour
         
     }
 
-    void OnDestroy()
-    {
-        meatList.Remove(this);
-    }
-
     // public methods
     public void Reset()
     {
@@ -43,7 +38,7 @@ public class MeatController : MonoBehaviour
         newMeat.gameObject.name = this.gameObject.name;
         Destroy(this.gameObject);
         */
-        // TODO: respawn meats already eaten
+        this.gameObject.SetActive(true);
         this.gameObject.transform.position = spawnLocation;
     }
     public void Eat()
@@ -51,6 +46,6 @@ public class MeatController : MonoBehaviour
         // Next stage TODO: find better place for this function call
         RulesManager.Instance.NextStage();
         // Eat the meat
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

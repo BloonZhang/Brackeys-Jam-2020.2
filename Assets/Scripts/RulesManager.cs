@@ -12,6 +12,11 @@ public class RulesManager : MonoBehaviour
     // Gameobjects and prefabs
     public GameObject VictoryMessage;
 
+    // private variables
+    private int stageNo = 1;
+
+    // helper variables
+    private bool stageTransitionLock = false;
 
     void Awake()
     {
@@ -23,26 +28,51 @@ public class RulesManager : MonoBehaviour
     // public methods
     public void RefreshLevel()
     {
-        // Refresh doors and levers and meats
+        // Refresh player
+        PlayerController.Instance.Reset();
+
+        // Don't refresh things if stage is transitioning to next stage
+        if (stageTransitionLock) { return; }
+
+        // Refresh doors and levers
         foreach(DoorScript door in DoorScript.doorList) {door.Reset();}
         foreach(LeverController lever in LeverController.leverList) {lever.Reset();}
         foreach(MeatController meat in MeatController.meatList) {meat.Reset();}
+
     }
 
     // TODO: finish level
     public void NextStage()
     {
+        stageTransitionLock = true;
         StartCoroutine(scrollMessage());
     }
-    public void EndStage()
+    public void LoadNextStage()
     {
+        // Refresh and increment the stage
+        RefreshLevel();
+        ++stageNo;
+        // Remove all ghosts
+        foreach (GhostController ghost in GhostController.ghostList) { Destroy(ghost.gameObject); }
 
+        switch(stageNo)
+        {
+            // Backwards Controls
+            case 2:
+                PlayerController.Instance.ReverseControls();
+                break;
+            case 3:
+                PlayerController.Instance.ResetControls();
+                break;
+            default:
+                break;
+        }
     }
 
     // Helper methods
     private IEnumerator scrollMessage()
     {
-        float timeInterval = 0.01f;
+        float timeInterval = 0.005f;
         float moveInterval = 0.2f;
         float waitTime = 1f;
         // Scroll up
@@ -61,7 +91,8 @@ public class RulesManager : MonoBehaviour
         }
         // Teleport back and end the stage
         VictoryMessage.gameObject.transform.position = new Vector3(-13.3f, VictoryMessage.gameObject.transform.position.y, 0);
-        EndStage();
+        stageTransitionLock = false;
+        LoadNextStage();
         yield return null;
     }
     
