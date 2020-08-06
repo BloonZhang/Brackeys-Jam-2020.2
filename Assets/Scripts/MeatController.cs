@@ -37,10 +37,14 @@ public class MeatController : MonoBehaviour
     // public methods
     public void Reset()
     {
+        /*
         // Spawn a copy and delete current one
         MeatController newMeat = Instantiate(this, spawnLocation, Quaternion.identity);
         newMeat.gameObject.name = this.gameObject.name;
         Destroy(this.gameObject);
+        */
+        // TODO: respawn meats already eaten
+        this.gameObject.transform.position = spawnLocation;
     }
     public void Eat()
     {
