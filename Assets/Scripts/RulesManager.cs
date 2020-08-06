@@ -49,27 +49,60 @@ public class RulesManager : MonoBehaviour
     }
     public void LoadNextStage()
     {
-        // Refresh and increment the stage
+        // Refresh and increment the stage, reset the rules
         RefreshLevel();
+        ResetRules();
         ++stageNo;
         // Remove all ghosts
-        foreach (GhostController ghost in GhostController.ghostList) { Destroy(ghost.gameObject); }
+        if (GhostController.ghostList != null)
+        {
+            foreach (GhostController ghost in GhostController.ghostList) { Destroy(ghost.gameObject); }
+        }
 
         switch(stageNo)
         {
+            // Case for testing quickly
+            case 2:
+                Physics2D.gravity = new Vector3(0, -1f, 0);
+                break;
+            /*
             // Backwards Controls
             case 2:
                 PlayerController.Instance.ReverseControls();
                 break;
+                
+            // Low gravity
             case 3:
-                PlayerController.Instance.ResetControls();
+                Physics2D.gravity = new Vector3(0, -1f, 0);
                 break;
+            */
             default:
                 break;
         }
     }
 
     // Helper methods
+    private void ResetRules()
+    {   
+        // All resets
+        PlayerController.Instance.ResetControls();
+        Physics2D.gravity = new Vector3(0, -9.81f, 0);
+        /*
+        switch(stageNo)
+        {
+            case 2:
+                PlayerController.Instance.ResetControls();
+                break;
+            case 3:
+                Physics2D.gravity = new Vector3(0, -9.81f, 0);
+                break;
+            default:
+                break;
+        }
+        */
+    }
+
+    // Coroutines
     private IEnumerator scrollMessage()
     {
         float timeInterval = 0.005f;
