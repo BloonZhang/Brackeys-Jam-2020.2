@@ -48,11 +48,16 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("oof");
             Death();
         }
-
         // Lever
-        if (col.tag == "Lever")
+        else if (col.tag == "Lever")
         {
-            col.GetComponent<LeverController>().FlipSwitch();
+            //col.GetComponent<LeverController>().FlipSwitch();
+            col.GetComponent<LeverController>().TurnOn();
+        }
+        // Meat
+        else if (col.tag == "Meat")
+        {
+            col.GetComponent<MeatController>().Eat();
         }
     }
 

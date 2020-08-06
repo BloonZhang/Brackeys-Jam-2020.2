@@ -21,11 +21,22 @@ public class RulesManager : MonoBehaviour
     // public methods
     public void RefreshLevel()
     {
-        // Refresh doors and levers
+        // Refresh doors and levers and meats
         foreach(DoorScript door in DoorScript.doorList) {door.Reset();}
         foreach(LeverController lever in LeverController.leverList) {lever.Reset();}
+        foreach(MeatController meat in MeatController.meatList) {meat.Reset();}
     }
 
     // TODO: finish level
+    public void NextStage()
+    {
+
+    }
+
+    // Helper methods
+    private void scrollMessage()
+    {
+
+    }
 
 }
