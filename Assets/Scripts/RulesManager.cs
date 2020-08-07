@@ -90,7 +90,7 @@ public class RulesManager : MonoBehaviour
             case 6:
                 PlayerController.Instance.AlwaysJump();
                 break;
-            case 7:
+            case 8:
                 PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
                 PlayerController.Instance.SetCustomSprite(leverSprite);
                 LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
@@ -148,7 +148,7 @@ public class RulesManager : MonoBehaviour
             case 6:
                 PlayerController.Instance.ResetControls();
                 break;
-            case 7:
+            case 8:
                 PlayerController.Instance.ResetControls();
                 LeverController.leverList[0].ResetControls();
                 PlayerController.Instance.Reset();
