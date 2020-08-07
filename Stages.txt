@@ -2,29 +2,33 @@ Stage 1 : No special rules-
 Stage 2 : Backwards controls-
 Stage 3 : Low gravity-
 Stage 4 : Flashlight-
-Stage 5 : Can't move left (hidden portal)-
+Stage 5 : Can't move left TODO: hidden portal?
 Stage 6 : Always jumping-
-Stage 7 : Control lever instead of fox-
-Stage 8 : Dangerous Portals
+Stage 7 : Lever actually closes door
+Stage 8 : Control lever instead of fox-
 Stage 9 : Invisible meat
-Stage 10:
-Stage 11:
-Stage 12:
-Stage 13:
-Stage 14:
-Stage 15:
+Stage 10: Invisible meat pt.2
+Stage 11: Only one jump
+Stage 12: Open is closed, closed is open
+Stage 13: Hit switch 5 times
+Stage 14: Kaizo blocks
+Stage 15: Dangerous portals scattered around
 Stage 16: Control meat instead of fox-
-Stage 17:
+Stage 17: Mega zoomed in
 Stage 18: Eating meat kills you, eating spikes makes the next level-
-Stage 19:
-Stage 20: Celeste switching
-Stage 21:
-Stage 22:
-Stage 23:
-Stage 24:
-Stage 25:
-Stage 26:
-Stage 27:
-Stage 28:
-Stage 29:
-Stage 30:
+Stage 19: Panic button to open the gate
+Stage 20: Advancing spike wall
+Stage 21: What is happening (mix up sprites)
+Stage 22: VVVVVV
+Stage 23: Poison meat everywhere
+Stage 24: Move stage instead of senko
+Stage 25: Konami code
+Stage 26: Meat is being portaled everywhere
+Stage 27: Just a normal stage
+Stage 28: Invisible poison meat everywhere
+Stage 29: Four horsemen
+		Backwards
+		Flashlight
+		VVVVVV
+		Advancing spike wall
+Stage 30: Complete darkness
