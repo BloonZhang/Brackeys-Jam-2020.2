@@ -11,6 +11,9 @@ public class RulesManager : MonoBehaviour
 
     // Gameobjects and prefabs
     public GameObject VictoryMessage;
+    public Sprite playerSprite;
+    public Sprite leverSprite;
+    public Sprite meatSprite;
 
     // private variables
     private int stageNo = 1;
@@ -63,7 +66,12 @@ public class RulesManager : MonoBehaviour
         {
             // Case for testing quickly
             case 2:
-                PlayerController.Instance.AlwaysJump();
+                PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
+                PlayerController.Instance.SetCustomSprite(leverSprite);
+                LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+                LeverController.leverList[0].SetCustomSprite(playerSprite);
+                PlayerController.Instance.Reset();
+                LeverController.leverList[0].Reset();
                 break;
             /*
             // Backwards Controls
@@ -86,6 +94,14 @@ public class RulesManager : MonoBehaviour
             case 6:
                 PlayerController.Instance.AlwaysJump();
                 break;
+            case 7:
+                PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
+                PlayerController.Instance.SetCustomSprite(leverSprite);
+                LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+                LeverController.leverList[0].SetCustomSprite(playerSprite);
+                PlayerController.Instance.Reset();
+                LeverController.leverList[0].Reset();
+                break;
             */
             default:
                 break;
@@ -100,6 +116,9 @@ public class RulesManager : MonoBehaviour
         Physics2D.gravity = new Vector3(0, -9.81f, 0);
         FlashlightController.Instance.TurnOff();
         PortalController.Instance.Reset();
+        LeverController.leverList[0].ResetControls();
+        PlayerController.Instance.Reset();
+        LeverController.leverList[0].Reset();
 
         /*
         switch(stageNo)
@@ -118,6 +137,12 @@ public class RulesManager : MonoBehaviour
                 PortalController.Instance.Reset();
             case 6:
                 PlayerController.Instance.ResetControls();
+                break;
+            case 7:
+                PlayerController.Instance.ResetControls();
+                LeverController.leverList[0].ResetControls();
+                PlayerController.Instance.Reset();
+                LeverController.leverList[0].Reset();
                 break;
             default:
                 break;
