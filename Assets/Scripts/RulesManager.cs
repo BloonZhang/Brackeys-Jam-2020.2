@@ -63,17 +63,26 @@ public class RulesManager : MonoBehaviour
         {
             // Case for testing quickly
             case 2:
-                Physics2D.gravity = new Vector3(0, -1f, 0);
+                PlayerController.Instance.NoLeftControls();
+                PortalController.Instance.TurnOnPortal(0);
                 break;
             /*
             // Backwards Controls
             case 2:
                 PlayerController.Instance.ReverseControls();
                 break;
-                
             // Low gravity
             case 3:
                 Physics2D.gravity = new Vector3(0, -1f, 0);
+                break;
+            // flashlight
+            case 4:
+                FlashlightController.Instance.TurnOn();
+                break;
+            // Can't move left
+            case 5:
+                PlayerController.Instance.NoLeftControls();
+                PortalController.Instance.TurnOnPortal(0);
                 break;
             */
             default:
@@ -87,6 +96,9 @@ public class RulesManager : MonoBehaviour
         // All resets
         PlayerController.Instance.ResetControls();
         Physics2D.gravity = new Vector3(0, -9.81f, 0);
+        FlashlightController.Instance.TurnOff();
+        PortalController.Instance.Reset();
+
         /*
         switch(stageNo)
         {
@@ -96,7 +108,12 @@ public class RulesManager : MonoBehaviour
             case 3:
                 Physics2D.gravity = new Vector3(0, -9.81f, 0);
                 break;
+            case 4:
+                FlashlightController.Instance.TurnOff();
+                break;
             default:
+                PlayerController.Instance.ResetControls();
+                PortalController.Instance.Reset();
                 break;
         }
         */
@@ -105,9 +122,9 @@ public class RulesManager : MonoBehaviour
     // Coroutines
     private IEnumerator scrollMessage()
     {
-        float timeInterval = 0.005f;
-        float moveInterval = 0.2f;
-        float waitTime = 1f;
+        float timeInterval = 0.005f; // Interval of time between movements
+        float moveInterval = 0.2f; // Distance moved in each interval
+        float alicia = 1f; // the amount of time the message pauses in the middle
         // Scroll up
         while (VictoryMessage.gameObject.transform.position.x <= 0)
         {
@@ -115,7 +132,7 @@ public class RulesManager : MonoBehaviour
             yield return new WaitForSeconds(timeInterval);
         }
         // Wait
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(alicia);
         // Scroll out
         while (VictoryMessage.gameObject.transform.position.x <= 16.5f)
         {

@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     // helper variables
     float horizontalMove = 0f;
     bool jump = false;
+
+    // rules variables
     private bool reverseControls = false;
+    private bool noLeft = false;
 
     void Awake()
     {
@@ -36,9 +39,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Panic
+        if (Input.GetButtonDown("Cancel") {Death();}
+
         // Get inputs
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         if (reverseControls) {horizontalMove = -horizontalMove;}
+        if (noLeft) {horizontalMove = Mathf.Max(0f, horizontalMove);}
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -75,9 +82,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Public methods
+    // Rules methods
     public void ReverseControls() { reverseControls = true; }
-    public void ResetControls() { reverseControls = false; }
+    public void NoLeftControls() { noLeft = true; }
+    public void ResetControls()
+    { 
+        reverseControls = false; 
+        noLeft = false;
+    }
+
+    // Public methods
     public void Reset()
     {
         // Move player to spawn point

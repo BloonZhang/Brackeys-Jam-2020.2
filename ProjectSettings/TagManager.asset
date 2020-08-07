@@ -8,6 +8,7 @@ TagManager:
   - Ghost
   - Lever
   - Meat
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Lever
   - Door
   - Meat
-  - 
+  - Portal
   - 
   - 
   - 
