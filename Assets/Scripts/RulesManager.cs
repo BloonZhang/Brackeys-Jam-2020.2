@@ -19,7 +19,7 @@ public class RulesManager : MonoBehaviour
     private int stageNo = 1;
 
     // helper variables
-    private bool stageTransitionLock = false;
+    public bool stageTransitionLock = false;
 
     void Awake()
     {
@@ -66,12 +66,8 @@ public class RulesManager : MonoBehaviour
         {
             // Case for testing quickly
             case 2:
-                PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
-                PlayerController.Instance.SetCustomSprite(meatSprite);
-                MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
-                MeatController.meatList[0].SetCustomSprite(playerSprite);
-                PlayerController.Instance.Reset();
-                MeatController.meatList[0].Reset();
+                PlayerController.Instance.MakeFoxAllergic();
+                PlayerController.Instance.MakeSpikesTasty();
                 break;
             /*
             // Backwards Controls
@@ -109,6 +105,10 @@ public class RulesManager : MonoBehaviour
                 MeatController.meatList[0].SetCustomSprite(playerSprite);
                 PlayerController.Instance.Reset();
                 MeatController.meatList[0].Reset();
+                break;
+            case 18:
+                PlayerController.Instance.MakeFoxAllergic();
+                PlayerController.Instance.MakeSpikesTasty();
                 break;
             */
             default:
@@ -159,6 +159,9 @@ public class RulesManager : MonoBehaviour
                 MeatController.meatList[0].ResetControls();
                 PlayerController.Instance.Reset();
                 MeatController.meatList[0].Reset();
+                break;
+            case 18:
+                PlayerController.Instance.ResetControls();
                 break;
             default:
                 break;

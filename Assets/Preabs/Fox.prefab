@@ -163,7 +163,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46983263, y: 0.45}
+  m_Size: {x: 0.44053972, y: 0.45}
   m_EdgeRadius: 0
 --- !u!114 &441983926947377034
 MonoBehaviour:
@@ -180,8 +180,8 @@ MonoBehaviour:
   controller: {fileID: 557679889493552352}
   ghostPrefab: {fileID: 1294261347030851909, guid: 6a28c67ed9814a54ea08fc61170c37da,
     type: 3}
-  spawnPoint: {fileID: 0}
   runSpeed: 30
+  defaultSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &557679889493552352
 MonoBehaviour:
   m_ObjectHideFlags: 0

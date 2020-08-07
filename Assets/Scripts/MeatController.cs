@@ -63,7 +63,7 @@ public class MeatController : MonoBehaviour
     public void Eat()
     {
         // Next stage TODO: find better place for this function call
-        RulesManager.Instance.NextStage();
+        //RulesManager.Instance.NextStage();
         // Eat the meat
         this.gameObject.SetActive(false);
     }

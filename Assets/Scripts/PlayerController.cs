@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private bool reverseControls = false;
     private bool noLeft = false;
     private bool alwaysJump = false;
+    private bool meatAllergy = false;
+    private bool spikesGood = false;
     private Vector3? customSpawnPoint = null;
 
     void Awake()
@@ -79,6 +82,14 @@ public class PlayerController : MonoBehaviour
         // Spikes
         if (col.tag == "Spikes")
         {
+            // If spikes are actually good
+            // TODO: make spike disappear?
+            if (spikesGood) 
+            { 
+                // Finish level if not already finished
+                if (!RulesManager.Instance.stageTransitionLock) { RulesManager.Instance.NextStage(); }
+                return; 
+            }
             //Debug.Log("oof");
             Death();
         }
@@ -91,7 +102,12 @@ public class PlayerController : MonoBehaviour
         // Meat
         else if (col.tag == "Meat")
         {
+            // If meat is actually bad
+            if (meatAllergy) { Death(); return; }
+            // Eat meat
             col.GetComponent<MeatController>().Eat();
+            // Next stage if not already finished
+            if (!RulesManager.Instance.stageTransitionLock) { RulesManager.Instance.NextStage(); }
         }
     }
 
@@ -99,6 +115,8 @@ public class PlayerController : MonoBehaviour
     public void ReverseControls() { reverseControls = true; }
     public void NoLeftControls() { noLeft = true; }
     public void AlwaysJump() { alwaysJump = true; }
+    public void MakeFoxAllergic() { meatAllergy = true; }
+    public void MakeSpikesTasty() { spikesGood = true; }
     public void SetCustomSpawnPoint(Vector3 spawnPoint) { customSpawnPoint = spawnPoint; }
     public void SetCustomSprite(Sprite customSprite) { this.gameObject.GetComponent<SpriteRenderer>().sprite = customSprite; }
     public void ResetControls()
@@ -106,6 +124,8 @@ public class PlayerController : MonoBehaviour
         reverseControls = false; 
         noLeft = false;
         alwaysJump = false;
+        meatAllergy = false;
+        spikesGood = false;
         customSpawnPoint = null;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = originalSprite;
     }

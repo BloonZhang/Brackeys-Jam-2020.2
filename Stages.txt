@@ -5,8 +5,8 @@ Stage 4 : Flashlight-
 Stage 5 : Can't move left (hidden portal)-
 Stage 6 : Always jumping-
 Stage 7 : Control lever instead of fox-
-Stage 8 :
-Stage 9 :
+Stage 8 : Dangerous Portals
+Stage 9 : Invisible meat
 Stage 10:
 Stage 11:
 Stage 12:
@@ -15,7 +15,7 @@ Stage 14:
 Stage 15:
 Stage 16: Control meat instead of fox-
 Stage 17:
-Stage 18: Eating meat kills you, eating spikes makes the next level
+Stage 18: Eating meat kills you, eating spikes makes the next level-
 Stage 19:
 Stage 20: Celeste switching
 Stage 21:
