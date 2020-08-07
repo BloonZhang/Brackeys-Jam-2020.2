@@ -63,8 +63,7 @@ public class RulesManager : MonoBehaviour
         {
             // Case for testing quickly
             case 2:
-                PlayerController.Instance.NoLeftControls();
-                PortalController.Instance.TurnOnPortal(0);
+                PlayerController.Instance.AlwaysJump();
                 break;
             /*
             // Backwards Controls
@@ -83,6 +82,9 @@ public class RulesManager : MonoBehaviour
             case 5:
                 PlayerController.Instance.NoLeftControls();
                 PortalController.Instance.TurnOnPortal(0);
+                break;
+            case 6:
+                PlayerController.Instance.AlwaysJump();
                 break;
             */
             default:
@@ -111,9 +113,13 @@ public class RulesManager : MonoBehaviour
             case 4:
                 FlashlightController.Instance.TurnOff();
                 break;
-            default:
+            case 5:
                 PlayerController.Instance.ResetControls();
                 PortalController.Instance.Reset();
+            case 6:
+                PlayerController.Instance.ResetControls();
+                break;
+            default:
                 break;
         }
         */

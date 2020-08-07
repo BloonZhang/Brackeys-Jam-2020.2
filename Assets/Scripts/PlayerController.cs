@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     // rules variables
     private bool reverseControls = false;
     private bool noLeft = false;
+    private bool alwaysJump = false;
 
     void Awake()
     {
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (reverseControls) {horizontalMove = -horizontalMove;}
         if (noLeft) {horizontalMove = Mathf.Max(0f, horizontalMove);}
 
-        if (Input.GetButtonDown("Jump"))
+        if (alwaysJump || Input.GetButtonDown("Jump"))
         {
             jump = true;
         }
@@ -85,10 +86,12 @@ public class PlayerController : MonoBehaviour
     // Rules methods
     public void ReverseControls() { reverseControls = true; }
     public void NoLeftControls() { noLeft = true; }
+    public void AlwaysJump() { alwaysJump = true; }
     public void ResetControls()
     { 
         reverseControls = false; 
         noLeft = false;
+        alwaysJump = false;
     }
 
     // Public methods

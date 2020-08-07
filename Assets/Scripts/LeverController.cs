@@ -14,6 +14,9 @@ public class LeverController : MonoBehaviour
     // private varibles
     private bool isOn = false;
 
+    // Rules variables
+    private bool disabled = false;
+
     void Awake()
     {
         if (leverList == null) {leverList = new List<LeverController>();}
@@ -25,6 +28,10 @@ public class LeverController : MonoBehaviour
         leverList.Remove(this);
     }
 
+    // Rules methods
+    public void Disable() {disabled = true;}
+    public void Enable() {disabled = false;}
+
     // public methods
     // Reset the switch
     public void Reset()
@@ -35,12 +42,18 @@ public class LeverController : MonoBehaviour
     // Flip the switch
     public void FlipSwitch()
     {
+        // No action if disabled
+        if (disabled) {return;}
+        // Flip
         if (!isOn) {TurnOn();}
         else {TurnOff();}
     }
     // Turn on the switch
     public void TurnOn()
     {
+        // No action if disabled
+        if (disabled) {return;}
+        // Turn on
         if (!isOn)
         {
             isOn = true;
@@ -51,6 +64,9 @@ public class LeverController : MonoBehaviour
     // Turn off the switch
     public void TurnOff()
     {
+        // No action if disabled
+        if (disabled) {return;}
+        // Turn off
         if (isOn)
         {
             isOn = false;
