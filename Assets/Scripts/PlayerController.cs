@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Panic
-        if (Input.GetButtonDown("Cancel") {Death();}
+        if (Input.GetButtonDown("Cancel")) {Death();}
 
         // Get inputs
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
