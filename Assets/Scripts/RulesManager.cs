@@ -66,12 +66,12 @@ public class RulesManager : MonoBehaviour
         {
             // Case for testing quickly
             case 2:
-                PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
-                PlayerController.Instance.SetCustomSprite(leverSprite);
-                LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
-                LeverController.leverList[0].SetCustomSprite(playerSprite);
+                PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
+                PlayerController.Instance.SetCustomSprite(meatSprite);
+                MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+                MeatController.meatList[0].SetCustomSprite(playerSprite);
                 PlayerController.Instance.Reset();
-                LeverController.leverList[0].Reset();
+                MeatController.meatList[0].Reset();
                 break;
             /*
             // Backwards Controls
@@ -102,6 +102,14 @@ public class RulesManager : MonoBehaviour
                 PlayerController.Instance.Reset();
                 LeverController.leverList[0].Reset();
                 break;
+            case 16:
+                PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
+                PlayerController.Instance.SetCustomSprite(meatSprite);
+                MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+                MeatController.meatList[0].SetCustomSprite(playerSprite);
+                PlayerController.Instance.Reset();
+                MeatController.meatList[0].Reset();
+                break;
             */
             default:
                 break;
@@ -117,8 +125,10 @@ public class RulesManager : MonoBehaviour
         FlashlightController.Instance.TurnOff();
         PortalController.Instance.Reset();
         LeverController.leverList[0].ResetControls();
+        MeatController.meatList[0].ResetControls();
         PlayerController.Instance.Reset();
         LeverController.leverList[0].Reset();
+        MeatController.meatList[0].Reset();
 
         /*
         switch(stageNo)
@@ -143,6 +153,12 @@ public class RulesManager : MonoBehaviour
                 LeverController.leverList[0].ResetControls();
                 PlayerController.Instance.Reset();
                 LeverController.leverList[0].Reset();
+                break;
+            case 16:
+                PlayerController.Instance.ResetControls();
+                MeatController.meatList[0].ResetControls();
+                PlayerController.Instance.Reset();
+                MeatController.meatList[0].Reset();
                 break;
             default:
                 break;

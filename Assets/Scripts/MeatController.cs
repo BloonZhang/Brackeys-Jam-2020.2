@@ -9,24 +9,41 @@ public class MeatController : MonoBehaviour
     public static List<MeatController> meatList;
 
     // private variables
-    private Vector3 spawnLocation;
+    public Vector3 defaultSpawnPoint;
+    private Sprite originalSprite;
+
+    // Rules variables
+    private Vector3? customSpawnPoint = null;
 
     void Awake()
     {
+        // Create meatlist if necessary and add meat
         if (meatList == null) {meatList = new List<MeatController>();}
         meatList.Add(this);
+        // Set up defaults
+        defaultSpawnPoint = new Vector3(4.5f, 2.715f, 0); 
+        originalSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnLocation = this.transform.position; 
+        Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    // Rules methods
+    public void SetCustomSpawnPoint(Vector3 spawnPoint) { customSpawnPoint = spawnPoint; }
+    public void SetCustomSprite(Sprite customSprite) { this.gameObject.GetComponent<SpriteRenderer>().sprite = customSprite; }
+    public void ResetControls() 
+    {
+        customSpawnPoint = null; 
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = originalSprite;
     }
 
     // public methods
@@ -39,7 +56,9 @@ public class MeatController : MonoBehaviour
         Destroy(this.gameObject);
         */
         this.gameObject.SetActive(true);
-        this.gameObject.transform.position = spawnLocation;
+        // Respawn location
+        if (customSpawnPoint != null) { this.gameObject.transform.position = (Vector3)customSpawnPoint; }
+        else { this.gameObject.transform.position = defaultSpawnPoint; }
     }
     public void Eat()
     {

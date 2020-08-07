@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
         originalSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
+    void Start()
+    {
+        Reset();
+    }
+
     // Update is called once per frame
     void Update()
     {

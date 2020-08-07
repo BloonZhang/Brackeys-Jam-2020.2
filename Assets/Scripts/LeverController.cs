@@ -32,7 +32,7 @@ public class LeverController : MonoBehaviour
 
     void Start()
     {
-
+        Reset();
     }
 
     void OnDestroy()
