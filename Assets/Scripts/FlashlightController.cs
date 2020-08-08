@@ -9,9 +9,12 @@ public class FlashlightController : MonoBehaviour
     public static FlashlightController Instance { get {return _instance;} }
     //////// Singleton shenanigans continue in Awake() ////
 
+    // gameobjects
+    public GameObject darkness;
+
     // private variables
-    private bool isOn = false;
-    private GameObject flashlight;
+    //private bool isOn = false;
+    private bool isOn = true;
 
     void Awake()
     {
@@ -19,13 +22,14 @@ public class FlashlightController : MonoBehaviour
         if (_instance != null && _instance != this) {Destroy(this.gameObject);} // no duplicates
         else {_instance = this;}
 
-        TurnOff();
+        //TurnOff();
+        TurnOn();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        flashlight = this.gameObject.transform.Find("Flashlight").gameObject;
+
     }
 
     // Update is called once per frame
@@ -33,12 +37,15 @@ public class FlashlightController : MonoBehaviour
     {
         if (isOn)
         {
-            flashlight.transform.position = PlayerController.Instance.gameObject.transform.position;
+            this.transform.position = PlayerController.Instance.gameObject.transform.position;
         }
     }
 
     // public methods
     public void TurnOff() { this.gameObject.SetActive(false); isOn = false;}
     public void TurnOn() { this.gameObject.SetActive(true); isOn = true;}
+
+    public void DarknessOn() { darkness.gameObject.SetActive(true); }
+    public void LetThereBeLight() { darkness.gameObject.SetActive(false); }
 
 }

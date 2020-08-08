@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     // public prefabs and gameobjects
     public GameObject ghostPrefab;
     //public GameObject spawnPoint;
+    public TextMeshProUGUI deathText;
 
     // public variables
     public float runSpeed = 30f;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     // helper variables
     float horizontalMove = 0f;
     bool jump = false;
+    private int deaths = 0;
 
     // rules variables
     private bool reverseControls = false;
@@ -149,6 +152,10 @@ public class PlayerController : MonoBehaviour
     // Create a ghost and die
     void Death()
     {
+        // Increment death count
+        deaths++;
+        deathText.text = "Deaths: " + deaths;
+
         //Debug.Log("dead");
         // Spawn ghost
         GameObject ghost = (GameObject) Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);

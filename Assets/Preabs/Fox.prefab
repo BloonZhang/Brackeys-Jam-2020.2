@@ -180,6 +180,7 @@ MonoBehaviour:
   controller: {fileID: 557679889493552352}
   ghostPrefab: {fileID: 1294261347030851909, guid: 6a28c67ed9814a54ea08fc61170c37da,
     type: 3}
+  deathText: {fileID: 0}
   runSpeed: 30
   defaultSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &557679889493552352

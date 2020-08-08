@@ -2,7 +2,7 @@ Stage 1 : No special rules-
 Stage 2 : Backwards controls-
 Stage 3 : Low gravity-
 Stage 4 : Flashlight-
-Stage 5 : Can't move left TODO: hidden portal?
+Stage 5 : Can't move left- TODO: hidden portal?
 Stage 6 : Always jumping-
 Stage 7 : Lever actually closes door
 Stage 8 : Control lever instead of fox-
@@ -11,7 +11,7 @@ Stage 10: Invisible meat pt.2
 Stage 11: Only one jump
 Stage 12: Open is closed, closed is open
 Stage 13: Hit switch 5 times
-Stage 14: Kaizo blocks
+Stage 14: Black and black
 Stage 15: Dangerous portals scattered around
 Stage 16: Control meat instead of fox-
 Stage 17: Mega zoomed in
@@ -32,3 +32,5 @@ Stage 29: Four horsemen
 		VVVVVV
 		Advancing spike wall
 Stage 30: Complete darkness
+
+Black and black
