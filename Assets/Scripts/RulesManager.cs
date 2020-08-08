@@ -34,16 +34,7 @@ public class RulesManager : MonoBehaviour
         else {_instance = this;}
 
         // Set stages and rules and whatnot
-        StageClass.stageList = new List<StageClass>();
-        stageList = StageClass.stageList;
-        // 1: No rules
-        stageList.Add(new StageClass(0, "Arrow Keys to Move"));
-        stageList[0].SetRules = delegate() { return; };
-        stageList[0].ClearRules = delegate() { return; };
-        // 2: backwards
-        stageList.Add(new StageClass(1, "First Death?"));
-        stageList[1].SetRules = delegate() { PlayerController.Instance.ReverseControls(); };
-        stageList[1].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
+        SetUpStages();
     }
 
     void Start()
@@ -223,6 +214,55 @@ public class RulesManager : MonoBehaviour
         
     }
     */
+    // This is the method for setting up stages
+    private void SetUpStages()
+    {
+        // Create stagelist
+        StageClass.stageList = new List<StageClass>();
+        stageList = StageClass.stageList;
+        int tmpStageNumber = 0;
+        // Each stage has four things to consider: number, name, setrules, and clearrules
+        // Soon backgroundcolor and tilecolor too
+        // 1: No rules
+        tmpStageNumber = 0;
+        stageList.Add(new StageClass(tmpStageNumber, "Arrow Keys to Move"));
+        stageList[tmpStageNumber].SetRules = delegate() { return; };
+        stageList[tmpStageNumber].ClearRules = delegate() { return; };
+        // 2: debug
+        tmpStageNumber = 1;
+        stageList.Add(new StageClass(tmpStageNumber, "Press ESC to Reset"));
+        stageList[tmpStageNumber].SetRules = delegate() { DoorScript.doorList[0].ReverseDoor(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { DoorScript.doorList[0].ResetControls(); };
+
+        /*
+
+        // 2: backwards
+        tmpStageNumber = 1;
+        stageList.Add(new StageClass(tmpStageNumber, "First Death?"));
+        stageList[tmpStageNumber].SetRules = delegate() { PlayerController.Instance.ReverseControls(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
+        // 3: low gravity
+        tmpStageNumber = 2;
+        stageList.Add(new StageClass(tmpStageNumber, "On the Moon"));
+        stageList[tmpStageNumber].SetRules = delegate() { Physics2D.gravity = new Vector3(0, -1f, 0); };
+        stageList[tmpStageNumber].ClearRules = delegate() { Physics2D.gravity = new Vector3(0, -9.81f, 0); };
+        // 4: Flashlight
+        tmpStageNumber = 3;
+        stageList.Add(new StageClass(tmpStageNumber, "Near-sighted"));
+        stageList[tmpStageNumber].SetRules = delegate() { FlashlightController.Instance.DarknessOn(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { FlashlightController.Instance.LetThereBeLight(); };
+        // 5: Always jumping
+        tmpStageNumber = 4;
+        stageList.Add(new StageClass(tmpStageNumber, "As the Rain Came Down My Window"));
+        stageList[tmpStageNumber].SetRules = delegate() { PlayerController.Instance.AlwaysJump(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
+        // 6: Lever closes door
+        tmpStageNumber = 5;
+        stageList.Add(new StageClass(tmpStageNumber, "Press ESC to Reset"));
+        stageList[tmpStageNumber].SetRules = delegate() { DoorScript.doorList[0].ReverseDoor(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { DoorScript.doorList[0].ResetControls(); };
+        */
+    }
 
     // Coroutines
     private IEnumerator scrollMessage()

@@ -16,6 +16,9 @@ public class DoorScript : MonoBehaviour
     private Vector3 fullOpen;
     private float moveIncrement = 0.008f;
 
+    // rules variables
+    public bool doorReversed = false;
+
     void Awake()
     {
         if (doorList == null) {doorList = new List<DoorScript>();}
@@ -36,19 +39,29 @@ public class DoorScript : MonoBehaviour
     // public methods
     public void Reset()
     {
-        CloseDoor();
+        StopAllCoroutines();
+        if (doorReversed) { this.transform.position = fullOpen; return; }
+        this.transform.position = fullClose;
     }
     public void OpenDoor()
     {
         StopAllCoroutines();
+        if (doorReversed) { StartCoroutine(MoveDown()); return; }
         StartCoroutine(MoveUp());
     }
     public void CloseDoor()
     {
         StopAllCoroutines();
+        if (doorReversed) { StartCoroutine(MoveUp()); return; }
         StartCoroutine(MoveDown());
     }
 
+    // Rules methods
+    public void ReverseDoor() { doorReversed = true; this.transform.position = fullOpen;}
+    public void ResetControls() 
+    {
+        doorReversed = false;
+    }
     // helper methods
     private IEnumerator MoveUp()
     {
