@@ -61,6 +61,7 @@ public class DoorScript : MonoBehaviour
     public void ResetControls() 
     {
         doorReversed = false;
+        Reset();
     }
     // helper methods
     private IEnumerator MoveUp()

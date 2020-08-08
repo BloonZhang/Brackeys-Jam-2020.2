@@ -146,7 +146,7 @@ public class RulesManager : MonoBehaviour
         stageList[tmpStageNumber].ClearRules = delegate() {  };
         */
         
-        /*
+        
         // 2: backwards
         tmpStageNumber = 1;
         stageList.Add(new StageClass(tmpStageNumber, "First Death?"));
@@ -233,14 +233,14 @@ public class RulesManager : MonoBehaviour
             PlayerController.Instance.Reset();
             MeatController.meatList[0].Reset();
         };
-        */
+        
     }
 
     // Coroutines
     private IEnumerator scrollMessage()
     {
         float timeInterval = 0.005f; // Interval of time between movements
-        float moveInterval = 12f; // Distance moved in each interval
+        float moveInterval = 20f; // Distance moved in each interval
         float alicia = 1f; // the amount of time the message pauses in the middle
         // Scroll up
         while (VictoryMessage.gameObject.transform.localPosition.x <= 0)
@@ -249,15 +249,16 @@ public class RulesManager : MonoBehaviour
             yield return new WaitForSeconds(timeInterval);
         }
         // Wait
+        VictoryMessage.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(alicia);
         // Scroll out
-        while (VictoryMessage.gameObject.transform.localPosition.x <= 1302f)
+        while (VictoryMessage.gameObject.transform.localPosition.x <= 1300f)
         {
             VictoryMessage.gameObject.transform.localPosition += new Vector3(moveInterval, 0, 0);
             yield return new WaitForSeconds(timeInterval);
         }
         // Teleport back and end the stage
-        VictoryMessage.gameObject.transform.localPosition = new Vector3(-1500f, VictoryMessage.gameObject.transform.localPosition.y, 0);
+        VictoryMessage.gameObject.transform.localPosition = new Vector3(-1090f, VictoryMessage.gameObject.transform.localPosition.y, 0);
         stageTransitionLock = false;
         LoadNextStage();
         yield return null;
