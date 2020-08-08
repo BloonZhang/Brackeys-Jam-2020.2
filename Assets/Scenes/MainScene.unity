@@ -221,7 +221,7 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1839735485 &8454289
 Tilemap:
   m_ObjectHideFlags: 0
@@ -3577,6 +3577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd16b9afac953c46aa333f716a9d59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorReversed: 0
 --- !u!1 &640955014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5541,12 +5542,12 @@ PrefabInstance:
     - target: {fileID: 4713877113764031408, guid: 468dc57751fab344e9eab81a89974da1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.455
+      value: 4.71
       objectReference: {fileID: 0}
     - target: {fileID: 4713877113764031408, guid: 468dc57751fab344e9eab81a89974da1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.851
+      value: 2.76
       objectReference: {fileID: 0}
     - target: {fileID: 4713877113764031408, guid: 468dc57751fab344e9eab81a89974da1,
         type: 3}
@@ -5597,11 +5598,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Meat
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713877113764031412, guid: 468dc57751fab344e9eab81a89974da1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468dc57751fab344e9eab81a89974da1, type: 3}

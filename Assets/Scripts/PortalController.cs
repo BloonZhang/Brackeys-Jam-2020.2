@@ -34,7 +34,7 @@ public class PortalController : MonoBehaviour
         // Set up blue portals
         bluePortalList.Add(new Vector3Int(-12, 0, 0));
         // Set up corresponding orange portals
-        orangePortalList.Add(new Vector3Int(11, -9, 0));
+        orangePortalList.Add(new Vector3Int(15, -9, 0));
     }
 
     void Start()

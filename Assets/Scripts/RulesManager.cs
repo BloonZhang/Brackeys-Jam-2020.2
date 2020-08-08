@@ -100,120 +100,9 @@ public class RulesManager : MonoBehaviour
         // Set new stage rules
         stageText.text = "Stage " + stageList[stageNo].stageNo + " - " + stageList[stageNo].stageName;
         stageList[stageNo].SetRules();
-
-
-        /*
-        switch(stageNo)
-        {
-            // Case for testing quickly
-            case 2:
-                PlayerController.Instance.MakeFoxAllergic();
-                PlayerController.Instance.MakeSpikesTasty();
-                break;
-            
-            // Backwards Controls
-            case 2:
-                PlayerController.Instance.ReverseControls();
-                break;
-            // Low gravity
-            case 3:
-                Physics2D.gravity = new Vector3(0, -1f, 0);
-                break;
-            // flashlight
-            case 4:
-                //FlashlightController.Instance.TurnOn();
-                FlashlightController.DarknessOn();
-                break;
-            // Can't move left
-            case 5:
-                PlayerController.Instance.NoLeftControls();
-                PortalController.Instance.TurnOnPortal(0);
-                break;
-            case 6:
-                PlayerController.Instance.AlwaysJump();
-                break;
-            case 8:
-                PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
-                PlayerController.Instance.SetCustomSprite(leverSprite);
-                LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
-                LeverController.leverList[0].SetCustomSprite(playerSprite);
-                PlayerController.Instance.Reset();
-                LeverController.leverList[0].Reset();
-                break;
-            case 16:
-                PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
-                PlayerController.Instance.SetCustomSprite(meatSprite);
-                MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
-                MeatController.meatList[0].SetCustomSprite(playerSprite);
-                PlayerController.Instance.Reset();
-                MeatController.meatList[0].Reset();
-                break;
-            case 18:
-                PlayerController.Instance.MakeFoxAllergic();
-                PlayerController.Instance.MakeSpikesTasty();
-                break;
-            default:
-                break;
-        }
-        */
     }
 
     // Helper methods
-    /*
-    private void ResetRules()
-    {   
-        // All resets
-        PlayerController.Instance.ResetControls();
-        Physics2D.gravity = new Vector3(0, -9.81f, 0);
-        //FlashlightController.Instance.TurnOff();
-        FlashlightController.Instance.LetThereBeLight();
-        PortalController.Instance.Reset();
-        LeverController.leverList[0].ResetControls();
-        MeatController.meatList[0].ResetControls();
-        PlayerController.Instance.Reset();
-        LeverController.leverList[0].Reset();
-        MeatController.meatList[0].Reset();
-
-        
-        switch(stageNo)
-        {
-            case 2:
-                PlayerController.Instance.ResetControls();
-                break;
-            case 3:
-                Physics2D.gravity = new Vector3(0, -9.81f, 0);
-                break;
-            case 4:
-                //FlashlightController.Instance.TurnOff();
-                FlashlightController.Instance.LetThereBeLight();
-                break;
-            case 5:
-                PlayerController.Instance.ResetControls();
-                PortalController.Instance.Reset();
-            case 6:
-                PlayerController.Instance.ResetControls();
-                break;
-            case 8:
-                PlayerController.Instance.ResetControls();
-                LeverController.leverList[0].ResetControls();
-                PlayerController.Instance.Reset();
-                LeverController.leverList[0].Reset();
-                break;
-            case 16:
-                PlayerController.Instance.ResetControls();
-                MeatController.meatList[0].ResetControls();
-                PlayerController.Instance.Reset();
-                MeatController.meatList[0].Reset();
-                break;
-            case 18:
-                PlayerController.Instance.ResetControls();
-                break;
-            default:
-                break;
-        }
-        
-    }
-    */
     // This is the method for setting up stages
     private void SetUpStages()
     {
@@ -228,14 +117,36 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "Arrow Keys to Move"));
         stageList[tmpStageNumber].SetRules = delegate() { return; };
         stageList[tmpStageNumber].ClearRules = delegate() { return; };
+        /*
         // 2: debug
         tmpStageNumber = 1;
-        stageList.Add(new StageClass(tmpStageNumber, "Press ESC to Reset"));
-        stageList[tmpStageNumber].SetRules = delegate() { DoorScript.doorList[0].ReverseDoor(); };
-        stageList[tmpStageNumber].ClearRules = delegate() { DoorScript.doorList[0].ResetControls(); };
-
+        stageList.Add(new StageClass(tmpStageNumber, "You Are What You Eat"));
+        stageList[tmpStageNumber].SetRules = delegate() 
+        {  
+            PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
+            PlayerController.Instance.SetCustomSprite(RulesManager.Instance.meatSprite);
+            MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+            MeatController.meatList[0].SetCustomSprite(RulesManager.Instance.playerSprite);
+            PlayerController.Instance.Reset();
+            MeatController.meatList[0].Reset();
+        };
+        stageList[tmpStageNumber].ClearRules = delegate() 
+        {  
+            PlayerController.Instance.ResetControls();
+            MeatController.meatList[0].ResetControls();
+            PlayerController.Instance.Reset();
+            MeatController.meatList[0].Reset();
+        };
+        */
         /*
-
+        // x: template
+        tmpStageNumber = ~;
+        stageList.Add(new StageClass(tmpStageNumber, "~"));
+        stageList[tmpStageNumber].SetRules = delegate() {  };
+        stageList[tmpStageNumber].ClearRules = delegate() {  };
+        */
+        
+        /*
         // 2: backwards
         tmpStageNumber = 1;
         stageList.Add(new StageClass(tmpStageNumber, "First Death?"));
@@ -261,6 +172,67 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "Press ESC to Reset"));
         stageList[tmpStageNumber].SetRules = delegate() { DoorScript.doorList[0].ReverseDoor(); };
         stageList[tmpStageNumber].ClearRules = delegate() { DoorScript.doorList[0].ResetControls(); };
+        // 7: Lever closes door
+        tmpStageNumber = 6;
+        stageList.Add(new StageClass(tmpStageNumber, "Hidden Portals"));
+        stageList[tmpStageNumber].SetRules = delegate() 
+        {  
+            PlayerController.Instance.NoLeftControls();
+            PortalController.Instance.TurnOnPortal(0);
+        };
+        stageList[tmpStageNumber].ClearRules = delegate() 
+        {  
+            PlayerController.Instance.ResetControls();
+            PortalController.Instance.Reset();
+        };
+        // 8: Control lever instead of fox
+        tmpStageNumber = 7;
+        stageList.Add(new StageClass(tmpStageNumber, "Kimi no Na wa."));
+        stageList[tmpStageNumber].SetRules = delegate() 
+        {  
+            PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
+            PlayerController.Instance.SetCustomSprite(RulesManager.Instance.leverSprite);
+            LeverController.leverList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+            LeverController.leverList[0].SetCustomSprite(RulesManager.Instance.playerSprite);
+            PlayerController.Instance.Reset();
+            LeverController.leverList[0].Reset();
+        };
+        stageList[tmpStageNumber].ClearRules = delegate() 
+        {  
+            PlayerController.Instance.ResetControls();
+            LeverController.leverList[0].ResetControls();
+            PlayerController.Instance.Reset();
+            LeverController.leverList[0].Reset();
+        };
+        // 9: Invisible meat
+        tmpStageNumber = 8;
+        stageList.Add(new StageClass(tmpStageNumber, "Muscle Memory"));
+        stageList[tmpStageNumber].SetRules = delegate() { MeatController.meatList[0].HideMeat(); };
+        stageList[tmpStageNumber].ClearRules = delegate() { MeatController.meatList[0].ResetControls(); };
+        // 10: Invisible meat pt 2
+        tmpStageNumber = 9;
+        stageList.Add(new StageClass(tmpStageNumber, "Hide and Seek"));
+        stageList[tmpStageNumber].SetRules = delegate() { MeatController.meatList[0].HideMeat(new Vector3(-5.48f, 3.86f, 0)); };
+        stageList[tmpStageNumber].ClearRules = delegate() { MeatController.meatList[0].ResetControls(); };
+        // 11: Control meat
+        tmpStageNumber = 10;
+        stageList.Add(new StageClass(tmpStageNumber, "You Are What You Eat"));
+        stageList[tmpStageNumber].SetRules = delegate() 
+        {  
+            PlayerController.Instance.SetCustomSpawnPoint(MeatController.meatList[0].defaultSpawnPoint);
+            PlayerController.Instance.SetCustomSprite(RulesManager.Instance.meatSprite);
+            MeatController.meatList[0].SetCustomSpawnPoint(PlayerController.Instance.defaultSpawnPoint);
+            MeatController.meatList[0].SetCustomSprite(RulesManager.Instance.playerSprite);
+            PlayerController.Instance.Reset();
+            MeatController.meatList[0].Reset();
+        };
+        stageList[tmpStageNumber].ClearRules = delegate() 
+        {  
+            PlayerController.Instance.ResetControls();
+            MeatController.meatList[0].ResetControls();
+            PlayerController.Instance.Reset();
+            MeatController.meatList[0].Reset();
+        };
         */
     }
 

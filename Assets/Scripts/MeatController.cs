@@ -40,10 +40,19 @@ public class MeatController : MonoBehaviour
     // Rules methods
     public void SetCustomSpawnPoint(Vector3 spawnPoint) { customSpawnPoint = spawnPoint; }
     public void SetCustomSprite(Sprite customSprite) { this.gameObject.GetComponent<SpriteRenderer>().sprite = customSprite; }
+    public void HideMeat() { this.gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask; }
+    public void HideMeat(Vector3 hideLocation) 
+    {
+        this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        this.transform.position = hideLocation;
+        HideMeat();
+    }
     public void ResetControls() 
     {
         customSpawnPoint = null; 
         this.gameObject.GetComponent<SpriteRenderer>().sprite = originalSprite;
+        this.gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
+        this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
     }
 
     // public methods
