@@ -82,6 +82,7 @@ public class LeverController : MonoBehaviour
             isOn = true;
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
             foreach (DoorScript door in myDoors) {door.OpenDoor();}
+            AudioManager.Instance.Switch();
         }
     }
     // Turn off the switch
@@ -95,6 +96,7 @@ public class LeverController : MonoBehaviour
             isOn = false;
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             foreach (DoorScript door in myDoors) {door.CloseDoor();}
+            AudioManager.Instance.Switch();
         }
     }
     // Is it on or off

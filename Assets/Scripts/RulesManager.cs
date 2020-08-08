@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System; // for actions
+using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class RulesManager : MonoBehaviour
 {
@@ -18,6 +20,15 @@ public class RulesManager : MonoBehaviour
     public Sprite meatSprite;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI stageText;
+
+    // Recoloring
+    /*
+    public Image BackgroundColor;
+    public Tilemap groundTilemap;
+    public Tilemap spikesTilemap;
+    public SpriteRenderer doorSpriteRenderer;
+    public SpriteRenderer leverSpriteRenderer;
+    */
 
     // private variables
     private int stageNo = 0;
@@ -94,12 +105,14 @@ public class RulesManager : MonoBehaviour
             stageNo = 0;
             Debug.Log("you win!");
             // TODO: 
-            //winGame();
+            SceneController.Instance.winGame();
+            return;
         }
 
-        // Set new stage rules
+        // Set new stage rules and recolor the map
         stageText.text = "Stage " + stageList[stageNo].stageNo + " - " + stageList[stageNo].stageName;
         stageList[stageNo].SetRules();
+        //Recolor(stageList[stageNo].backgroundColor, stageList[stageNo].tileColor);
     }
 
     // Helper methods
@@ -117,6 +130,7 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "Arrow Keys to Move"));
         stageList[tmpStageNumber].SetRules = delegate() { return; };
         stageList[tmpStageNumber].ClearRules = delegate() { return; };
+
         /*
         // 2: debug
         tmpStageNumber = 1;
@@ -152,6 +166,8 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "First Death?"));
         stageList[tmpStageNumber].SetRules = delegate() { PlayerController.Instance.ReverseControls(); };
         stageList[tmpStageNumber].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
+        //stageList[tmpStageNumber].backgroundColor = new Color(0, 0, 0, 1);
+        //stageList[tmpStageNumber].tileColor = new Color(1, 1, 1, 1);
         // 3: low gravity
         tmpStageNumber = 2;
         stageList.Add(new StageClass(tmpStageNumber, "On the Moon"));
@@ -187,7 +203,7 @@ public class RulesManager : MonoBehaviour
         };
         // 8: Control lever instead of fox
         tmpStageNumber = 7;
-        stageList.Add(new StageClass(tmpStageNumber, "Kimi no Na wa."));
+        stageList.Add(new StageClass(tmpStageNumber, "Kimi no Na wa"));
         stageList[tmpStageNumber].SetRules = delegate() 
         {  
             PlayerController.Instance.SetCustomSpawnPoint(LeverController.leverList[0].defaultSpawnPoint);
@@ -206,7 +222,7 @@ public class RulesManager : MonoBehaviour
         };
         // 9: Invisible meat
         tmpStageNumber = 8;
-        stageList.Add(new StageClass(tmpStageNumber, "Muscle Memory"));
+        stageList.Add(new StageClass(tmpStageNumber, "Test Your Memory"));
         stageList[tmpStageNumber].SetRules = delegate() { MeatController.meatList[0].HideMeat(); };
         stageList[tmpStageNumber].ClearRules = delegate() { MeatController.meatList[0].ResetControls(); };
         // 10: Invisible meat pt 2
@@ -235,10 +251,29 @@ public class RulesManager : MonoBehaviour
         };
         
     }
+    // This is the method for recoloring the background
+    /*
+    public void Recolor(Color backgroundColor, Color tileColor)
+    {
+        BackgroundColor.color = backgroundColor;
+        groundTilemap.color = tileColor;
+        spikesTilemap.color = tileColor;
+        doorSpriteRenderer.color = tileColor;
+        leverSpriteRenderer.color = tileColor;
+    }
+    */
 
     // Coroutines
     private IEnumerator scrollMessage()
     {
+        // If game win
+        if (stageNo == stageList.Count - 1)
+        {
+            Transform senkoText = VictoryMessage.transform.Find("SenkoMoreMeatText");
+            senkoText.GetComponent<TextMeshProUGUI>().text = "And now Senko is full!";
+        } 
+
+
         float timeInterval = 0.005f; // Interval of time between movements
         float moveInterval = 20f; // Distance moved in each interval
         float alicia = 1f; // the amount of time the message pauses in the middle
@@ -279,6 +314,8 @@ public class StageClass
     {
         stageName = name;
         stageNo = no + 1;
+        //backgroundColor = new Color32(0xC8, 0xC8, 0xC8, 0xFF);
+        //tileColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
     }
 
     public Action SetRules {get; set;}
@@ -288,6 +325,8 @@ public class StageClass
     // public variables
     public string stageName;
     public int stageNo;
+    //public Color backgroundColor;
+    //public Color tileColor;
 
     // TODO: background color and stage color
 }

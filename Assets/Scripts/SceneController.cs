@@ -32,7 +32,7 @@ public class SceneController : MonoBehaviour
     // Replay the game
     public void restartGame()
     {
-        enterIntro();
+        SceneManager.LoadScene("StartScreen");
     }
     // win the game
     public void winGame()
