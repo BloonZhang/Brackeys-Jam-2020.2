@@ -22,13 +22,13 @@ public class RulesManager : MonoBehaviour
     public TextMeshProUGUI stageText;
 
     // Recoloring
-    /*
+    
     public Image BackgroundColor;
     public Tilemap groundTilemap;
     public Tilemap spikesTilemap;
     public SpriteRenderer doorSpriteRenderer;
     public SpriteRenderer leverSpriteRenderer;
-    */
+
 
     // private variables
     private int stageNo = 0;
@@ -53,6 +53,7 @@ public class RulesManager : MonoBehaviour
         // Set up text and rules for first stage
         stageText.text = "Stage 1 - " + stageList[0].stageName;
         stageList[0].SetRules();
+        Recolor(stageList[stageNo].backgroundColor, stageList[stageNo].tileColor, stageList[stageNo].doorColor);
     }
 
     void FixedUpdate()
@@ -112,7 +113,7 @@ public class RulesManager : MonoBehaviour
         // Set new stage rules and recolor the map
         stageText.text = "Stage " + stageList[stageNo].stageNo + " - " + stageList[stageNo].stageName;
         stageList[stageNo].SetRules();
-        //Recolor(stageList[stageNo].backgroundColor, stageList[stageNo].tileColor);
+        Recolor(stageList[stageNo].backgroundColor, stageList[stageNo].tileColor, stageList[stageNo].doorColor);
     }
 
     // Helper methods
@@ -130,7 +131,9 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "Arrow Keys to Move"));
         stageList[tmpStageNumber].SetRules = delegate() { return; };
         stageList[tmpStageNumber].ClearRules = delegate() { return; };
-
+        stageList[tmpStageNumber].backgroundColor = new Color(0.914f, 0.792f, 0.463f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(0.698f, 0.42f, 0.055f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(0.635f, 0.165f, 0.016f, 1);
         /*
         // 2: debug
         tmpStageNumber = 1;
@@ -166,13 +169,17 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "First Death?"));
         stageList[tmpStageNumber].SetRules = delegate() { PlayerController.Instance.ReverseControls(); };
         stageList[tmpStageNumber].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
-        //stageList[tmpStageNumber].backgroundColor = new Color(0, 0, 0, 1);
-        //stageList[tmpStageNumber].tileColor = new Color(1, 1, 1, 1);
+        stageList[tmpStageNumber].backgroundColor = new Color(0.945f, 0.78f, 0.886f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(0.941f, 0.953f, 0.627f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(1, 1, 1, 1);
         // 3: low gravity
         tmpStageNumber = 2;
         stageList.Add(new StageClass(tmpStageNumber, "On the Moon"));
         stageList[tmpStageNumber].SetRules = delegate() { Physics2D.gravity = new Vector3(0, -1f, 0); };
         stageList[tmpStageNumber].ClearRules = delegate() { Physics2D.gravity = new Vector3(0, -9.81f, 0); };
+        stageList[tmpStageNumber].backgroundColor = new Color(17f/255f, 54f/255f, 207f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(141f/255f, 154f/255f, 164f/255f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(1, 1, 1, 1);
         // 4: Flashlight
         tmpStageNumber = 3;
         stageList.Add(new StageClass(tmpStageNumber, "Near-sighted"));
@@ -183,12 +190,18 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "As the Rain Came Down My Window"));
         stageList[tmpStageNumber].SetRules = delegate() { PlayerController.Instance.AlwaysJump(); };
         stageList[tmpStageNumber].ClearRules = delegate() { PlayerController.Instance.ResetControls(); };
+        stageList[tmpStageNumber].backgroundColor = new Color(215f/255f, 180f/255f, 253f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(138f/255f, 129f/255f, 250f/255f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(50f/255f, 28f/255f, 207f/255f, 1);
         // 6: Lever closes door
         tmpStageNumber = 5;
         stageList.Add(new StageClass(tmpStageNumber, "Press ESC to Reset"));
         stageList[tmpStageNumber].SetRules = delegate() { DoorScript.doorList[0].ReverseDoor(); };
         stageList[tmpStageNumber].ClearRules = delegate() { DoorScript.doorList[0].ResetControls(); };
-        // 7: Lever closes door
+        stageList[tmpStageNumber].backgroundColor = new Color(243f/255f, 242f/255f, 173f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(166f/255f, 233f/255f, 89f/255f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(199f/255f, 214f/255f, 42f/255f, 1);
+        // 7: Portals
         tmpStageNumber = 6;
         stageList.Add(new StageClass(tmpStageNumber, "Hidden Portals"));
         stageList[tmpStageNumber].SetRules = delegate() 
@@ -201,6 +214,9 @@ public class RulesManager : MonoBehaviour
             PlayerController.Instance.ResetControls();
             PortalController.Instance.Reset();
         };
+        stageList[tmpStageNumber].backgroundColor = new Color(64f/255f, 234f/255f, 246f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(1, 1, 1, 1);
+        stageList[tmpStageNumber].doorColor = new Color(1, 1, 1, 1);
         // 8: Control lever instead of fox
         tmpStageNumber = 7;
         stageList.Add(new StageClass(tmpStageNumber, "Kimi no Na wa"));
@@ -220,16 +236,23 @@ public class RulesManager : MonoBehaviour
             PlayerController.Instance.Reset();
             LeverController.leverList[0].Reset();
         };
+        stageList[tmpStageNumber].backgroundColor = new Color(64f/255f, 140f/255f, 255f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(108f/255f, 219f/255f, 122f/255f, 1);
         // 9: Invisible meat
         tmpStageNumber = 8;
         stageList.Add(new StageClass(tmpStageNumber, "Test Your Memory"));
         stageList[tmpStageNumber].SetRules = delegate() { MeatController.meatList[0].HideMeat(); };
         stageList[tmpStageNumber].ClearRules = delegate() { MeatController.meatList[0].ResetControls(); };
+        stageList[tmpStageNumber].backgroundColor = new Color(233f/255f, 155f/255f, 50f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(43f/255f, 24f/255f, 24f/255f, 1);
+        stageList[tmpStageNumber].doorColor = new Color(0, 0, 0, 1);
         // 10: Invisible meat pt 2
         tmpStageNumber = 9;
         stageList.Add(new StageClass(tmpStageNumber, "Hide and Seek"));
         stageList[tmpStageNumber].SetRules = delegate() { MeatController.meatList[0].HideMeat(new Vector3(-5.48f, 3.86f, 0)); };
         stageList[tmpStageNumber].ClearRules = delegate() { MeatController.meatList[0].ResetControls(); };
+        stageList[tmpStageNumber].backgroundColor = new Color(233f/255f, 140f/255f, 153f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(241f/255f, 212f/255f, 212f/255f, 1);
         // 11: Control meat
         tmpStageNumber = 10;
         stageList.Add(new StageClass(tmpStageNumber, "You Are What You Eat"));
@@ -249,19 +272,22 @@ public class RulesManager : MonoBehaviour
             PlayerController.Instance.Reset();
             MeatController.meatList[0].Reset();
         };
-        
+        stageList[tmpStageNumber].backgroundColor = new Color(255f/255f, 107f/255f, 100f/255f, 1);
+        stageList[tmpStageNumber].tileColor = new Color(253f/255f, 255f/255f, 76f/255f, 1);
+
+
     }
     // This is the method for recoloring the background
-    /*
-    public void Recolor(Color backgroundColor, Color tileColor)
+    
+    public void Recolor(Color backgroundColor, Color tileColor, Color doorColor)
     {
         BackgroundColor.color = backgroundColor;
         groundTilemap.color = tileColor;
         spikesTilemap.color = tileColor;
-        doorSpriteRenderer.color = tileColor;
-        leverSpriteRenderer.color = tileColor;
+        doorSpriteRenderer.color = doorColor;
+        leverSpriteRenderer.color = doorColor;
     }
-    */
+    
 
     // Coroutines
     private IEnumerator scrollMessage()
@@ -314,8 +340,9 @@ public class StageClass
     {
         stageName = name;
         stageNo = no + 1;
-        //backgroundColor = new Color32(0xC8, 0xC8, 0xC8, 0xFF);
-        //tileColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+        backgroundColor = new Color32(0xC8, 0xC8, 0xC8, 0xFF);
+        tileColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+        doorColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
     }
 
     public Action SetRules {get; set;}
@@ -325,8 +352,9 @@ public class StageClass
     // public variables
     public string stageName;
     public int stageNo;
-    //public Color backgroundColor;
-    //public Color tileColor;
+    public Color backgroundColor;
+    public Color tileColor;
+    public Color doorColor;
 
     // TODO: background color and stage color
 }
