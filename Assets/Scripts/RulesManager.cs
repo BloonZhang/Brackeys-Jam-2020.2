@@ -6,6 +6,8 @@ using System; // for actions
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
+// RulesManager: Controls changing the rules of each stage
+// Rules are set up in SetUpStages()
 public class RulesManager : MonoBehaviour
 {
     //////// Singleton shenanigans ////////
@@ -22,13 +24,11 @@ public class RulesManager : MonoBehaviour
     public TextMeshProUGUI stageText;
 
     // Recoloring
-    
     public Image BackgroundColor;
     public Tilemap groundTilemap;
     public Tilemap spikesTilemap;
     public SpriteRenderer doorSpriteRenderer;
     public SpriteRenderer leverSpriteRenderer;
-
 
     // private variables
     private int stageNo = 0;
@@ -81,7 +81,6 @@ public class RulesManager : MonoBehaviour
         foreach(LeverController lever in LeverController.leverList) {lever.Reset();}
         foreach(MeatController meat in MeatController.meatList) {meat.Reset();}
     }
-
     public void NextStage()
     {
         stageTransitionLock = true;
@@ -124,8 +123,7 @@ public class RulesManager : MonoBehaviour
         StageClass.stageList = new List<StageClass>();
         stageList = StageClass.stageList;
         int tmpStageNumber = 0;
-        // Each stage has four things to consider: number, name, setrules, and clearrules
-        // Soon backgroundcolor and tilecolor too
+        // Each stage has five things to consider: number, name, setrules, clearrules, and colors
         // 1: No rules
         tmpStageNumber = 0;
         stageList.Add(new StageClass(tmpStageNumber, "Arrow Keys to Move"));
@@ -161,6 +159,9 @@ public class RulesManager : MonoBehaviour
         stageList.Add(new StageClass(tmpStageNumber, "~"));
         stageList[tmpStageNumber].SetRules = delegate() {  };
         stageList[tmpStageNumber].ClearRules = delegate() {  };
+        stageList[tmpStageNumber].backgroundColor = new Color();
+        stageList[tmpStageNumber].tileColor = new Color();
+        stageList[tmpStageNumber].doorColor = new Color();
         */
         
         
@@ -278,7 +279,6 @@ public class RulesManager : MonoBehaviour
 
     }
     // This is the method for recoloring the background
-    
     public void Recolor(Color backgroundColor, Color tileColor, Color doorColor)
     {
         BackgroundColor.color = backgroundColor;
@@ -287,7 +287,6 @@ public class RulesManager : MonoBehaviour
         doorSpriteRenderer.color = doorColor;
         leverSpriteRenderer.color = doorColor;
     }
-    
 
     // Coroutines
     private IEnumerator scrollMessage()
@@ -324,11 +323,9 @@ public class RulesManager : MonoBehaviour
         LoadNextStage();
         yield return null;
     }
-    
-
 }
 
-// class for holding information about a stage
+// StageClass: class that holds information about a stage
 public class StageClass
 {
     // static list holding all stages
@@ -345,9 +342,9 @@ public class StageClass
         doorColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
     }
 
+    // public rules
     public Action SetRules {get; set;}
     public Action ClearRules {get; set;}
-
 
     // public variables
     public string stageName;
@@ -355,6 +352,4 @@ public class StageClass
     public Color backgroundColor;
     public Color tileColor;
     public Color doorColor;
-
-    // TODO: background color and stage color
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// LeverController: Controls behavior of the lever that opens the door
 public class LeverController : MonoBehaviour
 {
 

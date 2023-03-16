@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// AudioManager: Controls BGM and SFX
 public class AudioManager : MonoBehaviour
 {
     //////// Singleton shenanigans ////////
@@ -10,7 +11,6 @@ public class AudioManager : MonoBehaviour
     //////// Singleton shenanigans continue in Awake() ////
 
     // BGM
-
 
     // SFX
     public AudioSource eat;
@@ -38,5 +38,4 @@ public class AudioManager : MonoBehaviour
     {
         switchSound.Play();
     }
-
 }

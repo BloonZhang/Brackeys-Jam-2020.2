@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// DoorScript: Controls behavior of the door
 public class DoorScript : MonoBehaviour
 {
 

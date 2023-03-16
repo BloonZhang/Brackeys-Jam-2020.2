@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// PortalController: Controls behavior of portals that appear in the level
 public class PortalController : MonoBehaviour
 {
 

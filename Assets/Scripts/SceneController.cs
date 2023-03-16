@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// SceneController: Controls changing the scenes of the game
 public class SceneController : MonoBehaviour
 {
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using TMPro;
 
+// PlayerController: Handles input of the player for controlling Senko-san, as well as Senko-san's behavior
 public class PlayerController : MonoBehaviour
 {
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// GhostController: Controls the ghosts that appear when Senko-san dies
 public class GhostController : MonoBehaviour
 {
     // static list that holds all ghosts
@@ -15,12 +16,6 @@ public class GhostController : MonoBehaviour
     {
         if (ghostList == null) {ghostList = new List<GhostController>();}
         ghostList.Add(this);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// MeatController: Controls spawning and behavior of the meat
 public class MeatController : MonoBehaviour
 {
 

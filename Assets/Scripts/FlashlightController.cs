@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// FlashlightController: Controls the flashlight that appears in some levels
 public class FlashlightController : MonoBehaviour
 {
     //////// Singleton shenanigans ////////
@@ -26,12 +27,6 @@ public class FlashlightController : MonoBehaviour
         TurnOn();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -47,5 +42,4 @@ public class FlashlightController : MonoBehaviour
 
     public void DarknessOn() { darkness.gameObject.SetActive(true); }
     public void LetThereBeLight() { darkness.gameObject.SetActive(false); }
-
 }
